@@ -35,7 +35,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export type NavItem = {
-  to: LinkProps["to"];
+  to: NonNullable<LinkProps["to"]>;
   label: string;
   icon: React.ComponentType<{ className?: string }>;
   exact?: boolean;
