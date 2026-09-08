@@ -3,7 +3,7 @@ import { Globe } from "lucide-react";
 
 import { PageHeader, Panel, EmptyState } from "@/components/kit";
 
-export const Route = createFileRoute("/app/website")({
+export const Route = createFileRoute("/app/website/")({
   head: () => ({
     meta: [
       { title: "Website — WEBWARHEADS" },
