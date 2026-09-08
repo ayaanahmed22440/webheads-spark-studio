@@ -12,6 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AppRouteImport } from './routes/app'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as ProductRouteImport } from './routes/product'
+import { Route as SigninRouteImport } from './routes/signin'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
 import { Route as AdminBillingRouteImport } from './routes/admin.billing'
@@ -31,6 +36,7 @@ import { Route as AppReviewsRouteImport } from './routes/app.reviews'
 import { Route as AppSettingsRouteImport } from './routes/app.settings'
 import { Route as AppSupportRouteImport } from './routes/app.support'
 import { Route as AppWebsiteIndexRouteImport } from './routes/app.website.index'
+import { Route as AppWebsiteEditorRouteImport } from './routes/app.website.editor'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -45,6 +51,31 @@ const AdminRoute = AdminRouteImport.update({
 const AppRoute = AppRouteImport.update({
   id: '/app',
   path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductRoute = ProductRouteImport.update({
+  id: '/product',
+  path: '/product',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SigninRoute = SigninRouteImport.update({
+  id: '/signin',
+  path: '/signin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
@@ -142,11 +173,21 @@ const AppWebsiteIndexRoute = AppWebsiteIndexRouteImport.update({
   path: '/website/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppWebsiteEditorRoute = AppWebsiteEditorRouteImport.update({
+  id: '/website/editor',
+  path: '/website/editor',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
   '/app': typeof AppRouteWithChildren
+  '/how-it-works': typeof HowItWorksRoute
+  '/pricing': typeof PricingRoute
+  '/product': typeof ProductRoute
+  '/signin': typeof SigninRoute
+  '/signup': typeof SignupRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/billing': typeof AdminBillingRoute
   '/admin/customers': typeof AdminCustomersRoute
@@ -165,10 +206,16 @@ export interface FileRoutesByFullPath {
   '/app/support': typeof AppSupportRoute
   '/admin/': typeof AdminIndexRoute
   '/app/': typeof AppIndexRoute
+  '/app/website/editor': typeof AppWebsiteEditorRoute
   '/app/website/': typeof AppWebsiteIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/pricing': typeof PricingRoute
+  '/product': typeof ProductRoute
+  '/signin': typeof SigninRoute
+  '/signup': typeof SignupRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/billing': typeof AdminBillingRoute
   '/admin/customers': typeof AdminCustomersRoute
@@ -187,6 +234,7 @@ export interface FileRoutesByTo {
   '/app/support': typeof AppSupportRoute
   '/admin': typeof AdminIndexRoute
   '/app': typeof AppIndexRoute
+  '/app/website/editor': typeof AppWebsiteEditorRoute
   '/app/website': typeof AppWebsiteIndexRoute
 }
 export interface FileRoutesById {
@@ -194,6 +242,11 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
   '/app': typeof AppRouteWithChildren
+  '/how-it-works': typeof HowItWorksRoute
+  '/pricing': typeof PricingRoute
+  '/product': typeof ProductRoute
+  '/signin': typeof SigninRoute
+  '/signup': typeof SignupRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/billing': typeof AdminBillingRoute
   '/admin/customers': typeof AdminCustomersRoute
@@ -212,6 +265,7 @@ export interface FileRoutesById {
   '/app/support': typeof AppSupportRoute
   '/admin/': typeof AdminIndexRoute
   '/app/': typeof AppIndexRoute
+  '/app/website/editor': typeof AppWebsiteEditorRoute
   '/app/website/': typeof AppWebsiteIndexRoute
 }
 export interface FileRouteTypes {
@@ -220,6 +274,11 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/app'
+    | '/how-it-works'
+    | '/pricing'
+    | '/product'
+    | '/signin'
+    | '/signup'
     | '/admin/analytics'
     | '/admin/billing'
     | '/admin/customers'
@@ -238,10 +297,16 @@ export interface FileRouteTypes {
     | '/app/support'
     | '/admin/'
     | '/app/'
+    | '/app/website/editor'
     | '/app/website/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/how-it-works'
+    | '/pricing'
+    | '/product'
+    | '/signin'
+    | '/signup'
     | '/admin/analytics'
     | '/admin/billing'
     | '/admin/customers'
@@ -260,12 +325,18 @@ export interface FileRouteTypes {
     | '/app/support'
     | '/admin'
     | '/app'
+    | '/app/website/editor'
     | '/app/website'
   id:
     | '__root__'
     | '/'
     | '/admin'
     | '/app'
+    | '/how-it-works'
+    | '/pricing'
+    | '/product'
+    | '/signin'
+    | '/signup'
     | '/admin/analytics'
     | '/admin/billing'
     | '/admin/customers'
@@ -284,6 +355,7 @@ export interface FileRouteTypes {
     | '/app/support'
     | '/admin/'
     | '/app/'
+    | '/app/website/editor'
     | '/app/website/'
   fileRoutesById: FileRoutesById
 }
@@ -291,6 +363,11 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
   AppRoute: typeof AppRouteWithChildren
+  HowItWorksRoute: typeof HowItWorksRoute
+  PricingRoute: typeof PricingRoute
+  ProductRoute: typeof ProductRoute
+  SigninRoute: typeof SigninRoute
+  SignupRoute: typeof SignupRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -314,6 +391,41 @@ declare module '@tanstack/react-router' {
       path: '/app'
       fullPath: '/app'
       preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/product': {
+      id: '/product'
+      path: '/product'
+      fullPath: '/product'
+      preLoaderRoute: typeof ProductRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signin': {
+      id: '/signin'
+      path: '/signin'
+      fullPath: '/signin'
+      preLoaderRoute: typeof SigninRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/': {
@@ -449,6 +561,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppWebsiteIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/website/editor': {
+      id: '/app/website/editor'
+      path: '/website/editor'
+      fullPath: '/app/website/editor'
+      preLoaderRoute: typeof AppWebsiteEditorRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
@@ -489,6 +608,7 @@ interface AppRouteChildren {
   AppSettingsRoute: typeof AppSettingsRoute
   AppSupportRoute: typeof AppSupportRoute
   AppIndexRoute: typeof AppIndexRoute
+  AppWebsiteEditorRoute: typeof AppWebsiteEditorRoute
   AppWebsiteIndexRoute: typeof AppWebsiteIndexRoute
 }
 
@@ -501,6 +621,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppSettingsRoute: AppSettingsRoute,
   AppSupportRoute: AppSupportRoute,
   AppIndexRoute: AppIndexRoute,
+  AppWebsiteEditorRoute: AppWebsiteEditorRoute,
   AppWebsiteIndexRoute: AppWebsiteIndexRoute,
 }
 
@@ -510,6 +631,11 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
   AppRoute: AppRouteWithChildren,
+  HowItWorksRoute: HowItWorksRoute,
+  PricingRoute: PricingRoute,
+  ProductRoute: ProductRoute,
+  SigninRoute: SigninRoute,
+  SignupRoute: SignupRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

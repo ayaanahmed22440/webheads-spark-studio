@@ -73,7 +73,7 @@ function NavList({ items, onNavigate }: { items: NavItem[]; onNavigate?: () => v
         <Link
           key={to as string}
           to={to}
-          activeOptions={{ exact }}
+          activeOptions={{ exact: exact ?? false }}
           onClick={onNavigate}
           className="group relative flex items-center gap-3 rounded-md px-3 py-2 text-[0.8125rem] font-medium text-navy-muted transition-colors duration-150 hover:bg-navy-soft hover:text-navy-foreground focus-visible:ring-offset-navy"
           activeProps={{ className: "bg-navy-soft text-navy-foreground" }}
@@ -123,7 +123,7 @@ function SidebarBody({
         <p className="label-xs px-6 pb-2 text-navy-muted/70">
           {variant === "admin" ? "Operations" : "Workspace"}
         </p>
-        <NavList items={items} onNavigate={onNavigate} />
+        <NavList items={items} {...(onNavigate ? { onNavigate } : {})} />
       </div>
 
       <div className="shrink-0 border-t border-navy-line p-3">
